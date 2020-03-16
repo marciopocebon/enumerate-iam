@@ -229,19 +229,19 @@ BRUTEFORCE_TESTS = {
         "describe_subnet_groups"
     ],
     "devicefarm": [
-        "get_account_settings",
-        "get_offering_status",
-        "list_device_instances",
-        "list_devices",
-        "list_instance_profiles",
-        "list_offering_promotions",
-        "list_offering_transactions",
-        "list_offerings",
-        "list_projects",
-        "list_vpce_configurations"
+        #"get_account_settings",
+        #"get_offering_status",
+        #"list_device_instances",
+        #"list_devices",
+        #"list_instance_profiles",
+        #"list_offering_promotions",
+        #"list_offering_transactions",
+        #"list_offerings",
+        #"list_projects",
+        #"list_vpce_configurations"
     ],
     "devices.iot1click": [
-        "list_devices"
+        #"list_devices"
     ],
     "directconnect": [
         "describe_connections",
@@ -382,7 +382,7 @@ BRUTEFORCE_TESTS = {
         "list_container_instances",
         "list_services",
         "list_task_definition_families",
-        "list_task_definitions",
+        #"list_task_definitions",
         "list_tasks"
     ],
     "eks": [
@@ -497,8 +497,8 @@ BRUTEFORCE_TESTS = {
         "list_fleets"
     ],
     "globalaccelerator": [
-        "describe_accelerator_attributes",
-        "list_accelerators"
+        #"describe_accelerator_attributes",
+        #"list_accelerators"
     ],
     "glue": [
         "get_catalog_import_status",
@@ -823,7 +823,7 @@ BRUTEFORCE_TESTS = {
         "describe_db_cluster_endpoints",
         "describe_db_cluster_parameter_groups",
         "describe_db_cluster_snapshots",
-        "describe_db_clusters",
+        #"describe_db_clusters",
         "describe_db_engine_versions",
         "describe_db_instance_automated_backups",
         "describe_db_instances",
@@ -1091,7 +1091,7 @@ BRUTEFORCE_TESTS = {
         "list_ip_sets",
         "list_logging_configurations",
         "list_rate_based_rules",
-        "list_regex_match_sets",
+        #"list_regex_match_sets",
         "list_regex_pattern_sets",
         "list_rule_groups",
         "list_rules",

@@ -150,6 +150,7 @@ def get_client(access_key, secret_key, session_token, service_name, region):
 
 def check_one_permission(arg_tuple):
     access_key, secret_key, session_token, region, service_name, operation_name = arg_tuple
+    print("checking: {}".format(arg_tuple[3:]))
     logger = logging.getLogger()
 
     service_client = get_client(access_key, secret_key, session_token, service_name, region)

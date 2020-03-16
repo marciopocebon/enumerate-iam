@@ -13,6 +13,13 @@ OPERATION_CONTAINS = {
     'get_',
 }
 
+BLACKLIST_SERVICES = {
+    'devicefarm',
+    'devices.iot1click',
+    'gamelift'
+
+}
+
 BLACKLIST_OPERATIONS = {
     'get_apis',
     'get_bucket_notification',
@@ -26,6 +33,13 @@ BLACKLIST_OPERATIONS = {
     'get_checker_ip_ranges',
     'list_geo_locations',
     'list_public_keys',
+    'describe_db_clusters',
+    'list_regex_match_sets',
+    'list_task_definitions',
+    'describe_accelerator_attributes',
+    'list_accelerators',
+    'list_offering_promotions',
+    'list_vpce_configurations'
 
     # https://twitter.com/AndresRiancho/status/1106680434442809350
     'describe_stacks',
@@ -109,6 +123,8 @@ def main():
         api_json = json.loads(api_json_data)
 
         service_name = extract_service_name(filename, api_json)
+        if service_name in BLACKLIST_SERVICES:
+            continue
 
         if service_name is None:
             print('%s does not define a service name' % filename)
