@@ -22,6 +22,9 @@ $ ./enumerate-iam.py --access-key AKIA... --secret-key StF0q...
 2019-05-10 15:58:27,311 - 21345 - [INFO] -- sqs.list_queues() worked!
 ```
 
+If a run hangs for more than a few seconds, you likely need to blacklist that command
+in the bruteforce_tests.py (and generate_bruteforce_tests.py).
+
 Now you do!
 
 `enumerate-iam.py` tries to brute force all API calls allowed by the IAM policy.
@@ -31,7 +34,7 @@ calls are performed).
 ## Installation
 
 ```
-git clone git@github.com:andresriancho/enumerate-iam.git
+git clone git@github.com:praetorian-code/enumerate-iam.git
 cd enumerate-iam/
 pip install -r requirements.txt
 ```

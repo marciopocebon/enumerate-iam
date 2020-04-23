@@ -10,6 +10,9 @@ def main():
     parser.add_argument('--access-key', help='AWS access key', required=True)
     parser.add_argument('--secret-key', help='AWS secret key', required=True)
     parser.add_argument('--session-token', help='STS session token')
+    parser.add_argument('--whitelisted-services',
+                        help='comma-separated list for runtime-whitelisting. only test these services',
+                        default=[])
     parser.add_argument('--region', help='AWS region to send API requests to', default='us-east-1')
 
     args = parser.parse_args()
@@ -17,7 +20,8 @@ def main():
     enumerate_iam(args.access_key,
                   args.secret_key,
                   args.session_token,
-                  args.region)
+                  args.region,
+                  args.services)
 
 
 if __name__ == '__main__':

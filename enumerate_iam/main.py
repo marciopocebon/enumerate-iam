@@ -58,7 +58,7 @@ def report_arn(candidate):
     return None, None, None
 
 
-def enumerate_using_bruteforce(access_key, secret_key, session_token, region):
+def enumerate_using_bruteforce(access_key, secret_key, session_token, region, whitelisted_services):
     """
     Attempt to brute-force common describe calls.
     """
@@ -68,7 +68,7 @@ def enumerate_using_bruteforce(access_key, secret_key, session_token, region):
     logger.info('Attempting common-service describe / list brute force.')
 
     pool = ThreadPool(MAX_THREADS)
-    args_generator = generate_args(access_key, secret_key, session_token, region)
+    args_generator = generate_args(access_key, secret_key, session_token, region, whitelisted_services)
 
     try:
         results = pool.map(check_one_permission, args_generator)
@@ -99,10 +99,16 @@ def enumerate_using_bruteforce(access_key, secret_key, session_token, region):
 
     return output
 
+def filter_services(default_services, whitelisted_services):
+    filtered = default_services
+    if whitelisted_services:
+        filtered = [service_name for service_name in default_services if service_name in whitelisted_services]
+    return filtered
 
-def generate_args(access_key, secret_key, session_token, region):
+def generate_args(access_key, secret_key, session_token, region, whitelisted_services):
 
     service_names = list(BRUTEFORCE_TESTS.keys())
+    service_names = filter_services(service_names, whitelisted_services)
 
     random.shuffle(service_names)
 
@@ -208,7 +214,7 @@ def configure_logging():
     urllib3.disable_warnings(botocore.vendored.requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
 
-def enumerate_iam(access_key, secret_key, session_token, region):
+def enumerate_iam(access_key, secret_key, session_token, region, services):
     """IAM Account Enumerator.
 
     This code provides a mechanism to attempt to validate the permissions assigned
@@ -218,7 +224,7 @@ def enumerate_iam(access_key, secret_key, session_token, region):
     configure_logging()
 
     output['iam'] = enumerate_using_iam(access_key, secret_key, session_token, region)
-    output['bruteforce'] = enumerate_using_bruteforce(access_key, secret_key, session_token, region)
+    output['bruteforce'] = enumerate_using_bruteforce(access_key, secret_key, session_token, region, services)
 
     return output
 
